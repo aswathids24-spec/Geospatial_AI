@@ -1,0 +1,23 @@
+GeoRAG  
+==================
+
+Steps to run (local or Colab):
+1. Create a Python environment and install requirements:
+   pip install -r requirements.txt
+
+2. Ingest data (OSM + GADM):
+   python 01_data_ingestion.py
+
+3. Build embeddings + FAISS index:
+   python 02_build_index.py
+
+4. Test retrieval:
+   python -c "from 03_retrieval import spatial_semantic_search; print(spatial_semantic_search('hospitals', 12.97,77.60,3,5))"
+
+5. Run Streamlit UI:
+   streamlit run 04_streamlit_app.py
+
+Notes:
+- Change STUDY_AREA variable in 01_data_ingestion.py to your study area.
+- To add raster evidence, use Google Earth Engine or download small raster tiles and sample stats to attach to metadata.
+- You can replace SBERT model name in 02_build_index.py with other models for experiments.
